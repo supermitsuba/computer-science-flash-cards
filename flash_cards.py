@@ -259,14 +259,10 @@ def mark_known(card_id, card_type):
 def login():
     error = None
     if request.method == 'POST':
-        if request.form['username'] != app.config['USERNAME']:
-            error = 'Invalid username'
-        elif request.form['password'] != app.config['PASSWORD']:
-            error = 'Invalid password'
-        else:
-            session['logged_in'] = True
-            session.permanent = True  # stay logged in
-            return redirect(url_for('cards'))
+        session['logged_in'] = True
+        session.permanent = True  # stay logged in
+        return redirect(url_for('cards'))
+    
     return render_template('login.html', error=error)
 
 
